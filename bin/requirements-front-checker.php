@@ -27,8 +27,8 @@ if (!command_exists('node')) {
 }
 
 // Check Node.js version
-$nodeVersion = trim(shell_exec('node --version'));
-$requiredNodeVersion = 'v16.0.0'; // Update this to the minimum required Node.js version for Next.js 13
+$nodeVersion = trim(shell_exec('node --version') ?? "");
+$requiredNodeVersion = 'v18.1.0'; // Update this to the minimum required Node.js version for Next.js 13
 
 if (!preg_match('/^v\d+\.\d+\.\d+/', $nodeVersion)) {
     $errors[] = "Unable to determine Node.js version.";
@@ -44,7 +44,7 @@ if (!command_exists('yarn')) {
 }
 
 // Check Yarn version
-$yarnVersion = trim(shell_exec('yarn --version'));
+$yarnVersion = trim(shell_exec('yarn --version') ?? "");
 $requiredYarnVersion = '1.22.0'; // Update this to the minimum required Yarn version for Next.js 13
 
 if (!preg_match('/^\d+\.\d+\.\d+/', $yarnVersion)) {
@@ -61,7 +61,7 @@ if (!yarn_can_connect_to_registry()) {
 }
 
 // Check if pm2 is installed and the version is greater than 5.x.x
-$pm2Version = trim(shell_exec('pm2 --version'));
+$pm2Version = trim(shell_exec('pm2 --version') ?? "");
 $requiredPm2Version = '5.0.0'; // Update this to the minimum required pm2 version
 
 if (!preg_match('/^\d+\.\d+\.\d+/', $pm2Version)) {
@@ -73,7 +73,7 @@ if (version_compare($pm2Version, $requiredPm2Version, '<')) {
 }
 
 // Check if redis-cli is installed and the version is greater than 6.x.x
-$redisVersion = trim(shell_exec('redis-cli --version'));
+$redisVersion = trim(shell_exec('redis-cli --version') ?? "");
 $requiredRedisVersion = '6.0.0'; // Update this to the minimum required redis-cli version
 
 if (!preg_match('/^\d+\.\d+\.\d+/', $redisVersion)) {

@@ -542,7 +542,7 @@ class FactoryRequirements extends RequirementCollection
             'timeout' => 1.5
         )));
         $fd = @fopen($url, 'r', false, $context);
-        if (@stream_get_meta_data($fd)) {
+        if (!is_bool($fd) && @stream_get_meta_data($fd)) {
             $status = TRUE;
         }
         @fclose($fd);

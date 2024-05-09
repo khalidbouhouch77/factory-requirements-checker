@@ -12,12 +12,7 @@ class RequirementCollection implements \IteratorAggregate
      */
     private $requirements = array();
 
-    /**
-     * Gets the current RequirementCollection as an Iterator.
-     *
-     * @return \Traversable A Traversable interface
-     */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->requirements);
     }
